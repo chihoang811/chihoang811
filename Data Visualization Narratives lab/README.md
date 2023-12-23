@@ -35,7 +35,7 @@
        - First, we use an app named "Flourish", which allows us to easily create beautiful data visualization. For our work, Slope chart and Dot visualization are two types of charts chosen to show the relationship between the rooms' distances and their rent price.
        - Second, we use the app named "Canva" to add design adjustment on the charts.
      - Ultimately, our visualization is finished.
-       - In order to see the result, please find these two files in the "Prject" folder:
+       - In order to see the result, please find these two files in the "Project" folder:
          - `"dataviz lab pic"`
          - `"dataviz lab vid"`
 ### Conclusions

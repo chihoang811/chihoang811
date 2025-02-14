@@ -385,7 +385,7 @@ def grid_search_cv(classifier, param_grid, X_train, y_train, cv=5, n_jobs=-1):
         classifier.fit(X_train_fold, y_train_fold)
         y_pred = classifier.predict(X_val_fold)
         return classifier.accuracy(y_val_fold, y_pred)
-    
+
     # Iterate through all parameter combinations
     for params in param_combinations:
         scores = Parallel(n_jobs=n_jobs)(delayed(fold_evaluate)(params, i) for i in range(cv))

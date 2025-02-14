@@ -360,12 +360,23 @@ from itertools import product
 
 # function for hyperparameter tuning
 def grid_search_cv(classifier, param_grid, X_train, y_train, cv=5, n_jobs=-1):
-    best_score = -1
+    """
+    implementation of Grid Search Cross-Validation (GridSearchCV)
+    :param classifier: the model (DecisionTreeClassifier)
+    :param param_grid: the range of hyperparameters considered
+    :param X_train: X_train
+    :param y_train: y_train
+    :param cv: number of cross-validation fold
+    :param n_jobs: number of cores to use for parallel processing (default is -1, meaning all available cores)
+    :return: the best parameters and the best accuracy score
+    """
+    best_score = -1 # initialize the best score (making sure the best one)
     best_params = None
 
-    # generate all possible parameter combinations
+    # generate all possible parameter combinations, and convert each combination into a  dictionary
     param_combinations = [dict(zip(param_grid.keys(), values)) for values in product(*param_grid.values())]
 
+    #
     def fold_evaluate(params, i):
         """ run a single fold evaluation for cross-validation"""
         X_train_fold, X_val_fold, y_train_fold, y_val_fold = train_test_split(X_train, y_train, test_size=1 / cv,
@@ -374,7 +385,7 @@ def grid_search_cv(classifier, param_grid, X_train, y_train, cv=5, n_jobs=-1):
         classifier.fit(X_train_fold, y_train_fold)
         y_pred = classifier.predict(X_val_fold)
         return classifier.accuracy(y_val_fold, y_pred)
-
+    
     # Iterate through all parameter combinations
     for params in param_combinations:
         scores = Parallel(n_jobs=n_jobs)(delayed(fold_evaluate)(params, i) for i in range(cv))

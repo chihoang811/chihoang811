@@ -358,6 +358,7 @@ from joblib import Parallel, delayed
 from itertools import product
 
 
+# function for hyperparameter tuning
 def grid_search_cv(classifier, param_grid, X_train, y_train, cv=5, n_jobs=-1):
     best_score = -1
     best_params = None
@@ -385,29 +386,6 @@ def grid_search_cv(classifier, param_grid, X_train, y_train, cv=5, n_jobs=-1):
 
     return best_params, best_score
 
-import random
 
-def randomized_search_cv(classifier, param_grid, X_train, y_train, n_iter=10, cv=5, scoring='accuracy',
-                         random_state=None, n_jobs=-1):
-    best_score = -1
-    best_params = None
 
-    def fold_evaluate(params, i):
-        """ run a single fold evaluation for cross-validation"""
-        X_train_fold, X_val_fold, y_train_fold, y_val_fold = train_test_split(X_train, y_train, test_size=1 / cv,
-                                                                              random_state=i)
-        classifier.set_params(**params)
-        classifier.fit(X_train_fold, y_train_fold)
-        y_pred = classifier.predict(X_val_fold)
-        return classifier.accuracy(y_val_fold, y_pred)
 
-    for _ in range(n_iter):
-        params = {key: random.choice(values) for key, values in param_grid.items()}
-        scores = Parallel(n_jobs=n_jobs)(delayed(fold_evaluate)(params, i) for i in range(cv))
-        mean_score = np.mean(scores)
-
-        if mean_score > best_score:
-            best_score = mean_score
-            best_params = params
-
-    return best_params, best_score

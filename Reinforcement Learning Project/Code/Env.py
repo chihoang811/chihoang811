@@ -20,9 +20,9 @@ class ChefEnv(gym.Env):
         # Define the list of ingredients (to make pizza recipes)
         self.ingredient_list = ['dough', 'tomato', 'cheese', 'tuna', 'pepperoni', 'pineapple']
         self.valid_recipes = {
-            ('dough', 'sauce', 'cheese'): 6,  # Margherita pizza
-            ('dough', 'sauce', 'cheese', 'pepperoni'): 8,  # Pepperoni pizza
-            ('dough', 'sauce', 'cheese', 'tuna'): 10,  # Tuna pizza
+            ('dough', 'tomato', 'cheese'): 6,  # Margherita pizza
+            ('dough', 'tomato', 'cheese', 'pepperoni'): 8,  # Pepperoni pizza
+            ('dough', 'tomato', 'cheese', 'tuna'): 10,  # Tuna pizza
         }
 
         # Ingredient costs

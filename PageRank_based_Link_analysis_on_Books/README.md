@@ -9,6 +9,9 @@
     - **Book_rating_Similarity_checked.ipynb**  
         Extends the previous approach by applying Jaccard similarity to detect and merge duplicated or highly similar book titles.
 
+    - For proper visualization of hyperlinks and figure references, **please download the PDF file** and view it locally.
+
+
 
 ### Authors
 

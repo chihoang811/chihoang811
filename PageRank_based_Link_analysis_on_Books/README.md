@@ -3,10 +3,10 @@
 
 - Based on the publicly available Amazon Book Review dataset on [Kaggle](https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews), the objective is to develop a ranking system using PageRank-based Link Analysis to identify the most influential books. 
 - This repository contains two Jupyter notebooks and one PDF report describing the project:
-    - **Book_rating_no_Similarity_checked.ipynb**  
+    - **Book_ratings_1.ipynb**  
         Implements a PageRank-based link analysis on books without considering title similarity.
 
-    - **Book_rating_Similarity_checked.ipynb**  
+    - **Book_ratings_2.ipynb**  
         Extends the previous approach by applying Jaccard similarity to detect and merge duplicated or highly similar book titles.
 
     - For proper visualization of hyperlinks and figure references, **please download the PDF file** and view it locally.
